@@ -1,0 +1,13 @@
+<launch>
+  <group ns="lmar">
+    <!--This is the standard keyboard control for robots found at: https://github.com/ros-teleop/teleop_twist_keyboard-->
+    <node pkg="teleop_twist_keyboard" name="keyboard_control" type="teleop_twist_keyboard.py"/>
+    <!--This is a driver for GPIO input for the leak sensors-->
+    <node pkg="lmar_ros" name="leak_detector_driver" type="leak_detector_driver.py"/>
+    <!--This is a driver for the Motor Controllers-->
+
+    <!--This is a driver for the GPS-->
+    <node pkg="nmea_navsat_driver" name="gps_driver" type="nmea_serial_driver" args="_port:=/dev/ttyUSB0 _baud:=9600"/>
+
+  </group>
+</launch>
