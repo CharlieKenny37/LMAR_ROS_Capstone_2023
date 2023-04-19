@@ -1,0 +1,43 @@
+<robot name="LMAR">
+  <link name="base_link" />
+
+  <link name="motor_1_link_after" />
+
+  <link name="motor_2_link_after" />
+
+  <link name="top_plate_link" />
+  
+  <link name="mast_plate_link" />
+  <link name="mast_plate_link_after" />
+  
+  <joint name="base" type="fixed">
+    <parent link="base_link"/>
+    <child link="top_plate_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+
+  <joint name="motor_1" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_1_link_after"/>
+    <origin xyz="-0.1143 -0.33 0.21" rpy="0 0 0" />
+  </joint>
+
+  <joint name="motor_2" type="fixed">
+    <parent link="base_link"/>
+    <child link="motor_2_link_after"/>
+    <origin xyz="0.1143 0.33 0.21" rpy="0 0 0" />
+  </joint>
+
+  <joint name="top_plate" type="fixed">
+    <parent link="top_plate_link"/>
+    <child link="mast_plate_link"/>
+    <origin xyz="0 0 0.5" rpy="0 0 0" />
+  </joint>
+
+  <joint name="top_mast" type="fixed">
+    <parent link="mast_plate_link"/>
+    <child link="mast_plate_link_after"/>
+    <origin xyz="0 0 0.21" rpy="0 0 0" />
+  </joint>
+</robot>

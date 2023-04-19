@@ -1,5 +1,13 @@
 <launch>
   <group ns="lmar">
+
+    <param name="lmar_urdf" textfile="$(find lmar_rus)/urdf/robotmodel.urdf"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
+      <remap from="robot_description" to="lmar_urdf" />
+    </node>
+
+    
     <!--This is the standard keyboard control for robots found at: https://github.com/ros-teleop/teleop_twist_keyboard-->
     <node pkg="teleop_twist_keyboard" name="keyboard_control" type="teleop_twist_keyboard.py"/>
     <!--This is a driver for GPIO input for the leak sensors-->
@@ -11,3 +19,14 @@
 
   </group>
 </launch>
+
+
+  <launch>
+   <!-- Load the urdf into the parameter server. -->
+   <param name="my_robot_description" textfile="$(find mypackage)/urdf/robotmodel.xml"/>
+    
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
+      <remap from="robot_description" to="my_robot_description" />
+      <remap from="joint_states" to="different_joint_states" />
+    </node>
+  </launch>
