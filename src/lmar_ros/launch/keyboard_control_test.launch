@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="teleop_twist_keyboard" name="keyboard_control" type="teleop_twist_keyboard.py"/>
+  <node pkg="lmar_ros" name="keyboard_test" type="teleop_twist_keyboard_test.py"/>
+</launch>

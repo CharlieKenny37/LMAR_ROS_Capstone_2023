@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="lmar_ros" name="motor_gpio" type="motor_gpio.py"/>
+</launch>
