@@ -1,32 +1,19 @@
 <launch>
   <group ns="lmar">
 
+    <!--
     <param name="lmar_urdf" textfile="$(find lmar_rus)/urdf/robotmodel.urdf"/>
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
       <remap from="robot_description" to="lmar_urdf" />
-    </node>
-
-    
-    <!--This is the standard keyboard control for robots found at: https://github.com/ros-teleop/teleop_twist_keyboard-->
-    <node pkg="teleop_twist_keyboard" name="keyboard_control" type="teleop_twist_keyboard.py"/>
+    </node>-->
+    <include file="$(find imu_bno055)/path/imu.launch"/>
     <!--This is a driver for GPIO input for the leak sensors-->
     <node pkg="lmar_ros" name="leak_detector_driver" type="leak_detector_driver.py"/>
     <!--This is a driver for the Motor Controllers-->
-
+    <node pkg="lmar_ros" name="motor_gpio" type="motor_gpio.py"/>
     <!--This is a driver for the GPS-->
     <node pkg="nmea_navsat_driver" name="gps_driver" type="nmea_serial_driver" args="_port:=/dev/ttyUSB0 _baud:=9600"/>
 
   </group>
 </launch>
-
-
-  <launch>
-   <!-- Load the urdf into the parameter server. -->
-   <param name="my_robot_description" textfile="$(find mypackage)/urdf/robotmodel.xml"/>
-    
-   <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
-      <remap from="robot_description" to="my_robot_description" />
-      <remap from="joint_states" to="different_joint_states" />
-    </node>
-  </launch>
